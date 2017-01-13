@@ -11,12 +11,13 @@
 
 import sys
 
+from PyQt4.Qt import *
 import pyspline
-from pyspline import *
+#from pyspline import *
 
 if(__name__=='__main__'):
     app=QApplication(sys.argv)
-    mainwin=PySpline()
+    mainwin=pyspline.PySpline()
     mainwin.resize(600,400)
     
     #check to see if file was given on command line; if so, open it

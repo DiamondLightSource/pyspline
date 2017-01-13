@@ -945,6 +945,7 @@ class PySpline(QMainWindow):
 ##        print "Form1.helpContents(): Not implemented yet"
 
     def helpAbout(self):
+        print "about button clicked"
         self.box=AboutBox()
         self.box.show()
         
@@ -1018,7 +1019,7 @@ class PySpline(QMainWindow):
         return qApp.translate("Form1",s,c)
         
     def initActions(self):
-        
+        print "initActions"
         self.fileImportAction = QAction(self)
         #self.fileImportXMUAction = QAction(self)
         self.fileOpenAction = QAction(self)
@@ -1100,17 +1101,17 @@ class PySpline(QMainWindow):
         self.resize(QSize(644,630).expandedTo(self.minimumSizeHint()))
         #self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.fileOpenAction,SIGNAL("activated()"),self.fileOpen)
-        self.connect(self.fileImportAction,SIGNAL("activated()"),self.fileImport)
-        #self.connect(self.fileImportXMUAction,SIGNAL("activated()"),self.fileImportXMU)
-        self.connect(self.fileSaveAction,SIGNAL("activated()"),self.fileSave)
-        self.connect(self.fileSaveAsAction,SIGNAL("activated()"),self.fileSaveAs)
-        self.connect(self.fileExportfftAction,SIGNAL("activated()"),self.exportFourier)
-        #self.connect(self.filePrintAction,SIGNAL("activated()"),self.filePrint)
-        self.connect(self.fileExitAction,SIGNAL("activated()"),self.fileExit)
+        self.connect(self.fileOpenAction,SIGNAL("triggered()"),self.fileOpen)
+        self.connect(self.fileImportAction,SIGNAL("triggered()"),self.fileImport)
+        #self.connect(self.fileImportXMUAction,SIGNAL("triggered()"),self.fileImportXMU)
+        self.connect(self.fileSaveAction,SIGNAL("triggered()"),self.fileSave)
+        self.connect(self.fileSaveAsAction,SIGNAL("triggered()"),self.fileSaveAs)
+        self.connect(self.fileExportfftAction,SIGNAL("triggered()"),self.exportFourier)
+        #self.connect(self.filePrintAction,SIGNAL("triggered()"),self.filePrint)
+        self.connect(self.fileExitAction,SIGNAL("triggered()"),self.fileExit)
         
-        self.connect(self.editParametersAction,SIGNAL("activated()"),self.editParameters)
-        self.connect(self.editCommentsAction,SIGNAL("activated()"),self.editComments)
+        self.connect(self.editParametersAction,SIGNAL("triggered()"),self.editParameters)
+        self.connect(self.editCommentsAction,SIGNAL("triggered()"),self.editComments)
         
         self.connect(self.windowNormAction,SIGNAL("toggled(bool)"),self.norm.setShown)
         self.connect(self.norm,SIGNAL("closed()"),self.slotWindowNormActionToggled)
@@ -1124,9 +1125,9 @@ class PySpline(QMainWindow):
         #self.connect(self.windowI0Action,SIGNAL("toggled(bool)"),self.i0.setShown)
         #self.connect(self.i0,SIGNAL("closed()"),self.slotWindowI0ActionToggled)
         
-        ##self.connect(self.helpIndexAction,SIGNAL("activated()"),self.helpIndex)
-        ##self.connect(self.helpContentsAction,SIGNAL("activated()"),self.helpContents)
-        self.connect(self.helpAboutAction,SIGNAL("activated()"),self.helpAbout)
+        ##self.connect(self.helpIndexAction,SIGNAL("triggered()"),self.helpIndex)
+        ##self.connect(self.helpContentsAction,SIGNAL("triggered()"),self.helpContents)
+        self.connect(self.helpAboutAction,SIGNAL("triggered()"),self.helpAbout)
 
 
     def closeEvent(self,e):

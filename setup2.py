@@ -1,22 +1,22 @@
 import sys
 #check to see if qt,pyqt, and numeric are installed
-try:
-	import PyQt4 as qt
-except ImportError:
-	print "Please install PyQt first."
-	sys.exit(1)
+#try:
+#	import PyQt4 as qt
+#except ImportError:
+#	print "Please install PyQt first."
+#	sys.exit(1)
 
-try:
-	from PyQt4 import Qwt5 as qwt
-except ImportError:
-	print "Please install PyQwt first."
-	sys.exit(1)
+#try:
+#	from PyQt4 import Qwt5 as qwt
+#except ImportError:
+#	print "Please install PyQwt first."
+#	sys.exit(1)
 
-try:
-	import numpy
-except ImportError:
-	print "Please install numpy first."
-	sys.exit(1)
+#try:
+#	import numpy
+#except ImportError:
+#	print "Please install numpy first."
+#	sys.exit(1)
 
 #check to see if py2exe is wanted
 with_py2exe=True
@@ -41,13 +41,14 @@ if with_py2exe and len(sys.argv)>1 and sys.argv[1]=='py2exe':
           )
 
 else:
-    from distutils.core import setup
+    from setuptools import setup
     setup(name="PySpline",
           version="1.2",
           author="Adam Tenderholt and P Quinn",
           author_email="paul.quinn@diamond.ac.uk",
           url="http://pyspline.sourceforge.net",
-          package_dir = {'pyspline':'src_new'},
+          #package_dir = {'pyspline':'src_new'},
           packages=['pyspline'],
-          scripts=['pyspline']
+          scripts=['bin/pyspline'],
+          install_requires = ['numpy']
           )

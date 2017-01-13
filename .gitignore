@@ -1,3 +1,7 @@
 *.pyc
 *.pyo
+*.swp
+PySpline.egg-info
+build
+dist
 

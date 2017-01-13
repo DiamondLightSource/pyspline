@@ -1,0 +1,64 @@
+#! /bin/bash
+
+PWD=`pwd`;
+PYSPLINE_DIR=/dls_sw/apps/ifeffit/pyspline;
+
+# check that we're not actually in the installation directory
+if [ $PWD == $PYSPLINE_DIR ] ; then
+	echo "Can't run excurv in $PYSPLINE_DIR. Use ./abscalc instead.";
+	exit;
+fi;
+
+echo;
+echo "pyspline";
+
+# excurv needs to read some local data files. 
+# copy them into the current directory
+
+if [ -d $PYSPLINE_DIR ] ; then
+	echo;
+	echo "copying pyspline start up data from $PYSPLINE_DIR";
+else
+	echo "can't find pyspline installation directory $PYSPLINE_DIR";
+	exit;
+fi
+
+if [ -f $PYSPLINE_DIR/edges.dat ] ; then
+	echo "edges.dat";
+	cp $PYSPLINE_DIR/edges.dat . ;
+else
+	echo "can't find edges.dat in $PYSPLINE_DIR";
+	exit;
+fi
+
+if [ -f $PYSPLINE_DIR/formatPreferences.ini ] ; then
+	echo "formatPreferences.ini";
+	cp $PYSPLINE_DIR/formatPreferences.ini . ;
+else
+	echo "can't find formatPreferences.ini in $PYSPLINE_DIR";
+	exit;
+fi
+
+
+if [ -f $PYSPLINE_DIR/mymain.py ] ; then
+	echo;
+	echo "Starting pyspline";
+	echo;
+	$PYSPLINE_DIR/mymain.py
+	# clean up after exit
+	echo "Ending pyspline";
+	echo "removing pyspline start up data...";
+	rm -f formatPreferences.ini;
+	rm -f edges.dat;
+  	rm -f splogo.gif;
+  	rm -f pyspline.ico;
+  	rm -rf xbms;
+  	rm -rf pyspline_examples;
+else
+	echo "can't find pyspline in $PYSPLINE_DIR";
+	exit;
+fi
+
+echo
+echo "done!";
+echo

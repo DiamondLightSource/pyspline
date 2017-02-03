@@ -32,6 +32,8 @@ from random import randint
 import numpy
 #from scipy import *
 from dataplot import *
+import appdirs
+import os
 #
 #
 # A class to help with importing data files
@@ -250,8 +252,9 @@ class DataImporter(QDialog):
 
 	def readPreferences(self):
 		try:
-			fin=open("formatPreferences.ini","r")
+			fin=open(os.path.join(appdirs.user_config_dir("pyspline", "DLS"), "formatPreferences.ini"),"r")
 		except:
+			print "Could not open formatPreferences.ini"
 			return
 		preferences=fin.readlines()
 		fin.close()
@@ -267,7 +270,11 @@ class DataImporter(QDialog):
 		#print self.denominatorList,self.numeratorList,self.energySelection
 		
 	def writePreferences(self):
-		fout=open("formatPreferences.ini","w")
+		try:
+			fout=open(os.path.join(appdirs.user_config_dir("pyspline", "DLS"), "formatPreferences.ini"),"w")
+		except:
+			print "Could not open formatPreferences.ini"
+			return
 		print >>fout,"Energy",self.energySelection
 		print >>fout,"Numerator",str(self.numeratorList[0:]).strip('[]').replace(',','')
 		print >>fout,"Denominator",str(self.denominatorList[0:]).strip('[]').replace(',','')

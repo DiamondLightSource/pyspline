@@ -52,5 +52,5 @@ else:
           #package_dir = {'pyspline':'pyspline'},
           #data_files = ('data', ['pyspline/data/edges.dat']),
           scripts=['bin/pyspline'],
-          install_requires = ['numpy']
+          install_requires = ['numpy', 'appdirs']
           )

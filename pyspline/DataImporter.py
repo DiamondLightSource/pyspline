@@ -249,7 +249,10 @@ class DataImporter(QDialog):
 		return loadedok
 
 	def readPreferences(self):
-		fin=open("formatPreferences.ini","r")
+		try:
+			fin=open("formatPreferences.ini","r")
+		except:
+			return
 		preferences=fin.readlines()
 		fin.close()
 		datai,datas=self.stringToIntegerList(preferences[0])

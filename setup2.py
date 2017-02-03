@@ -47,8 +47,10 @@ else:
           author="Adam Tenderholt and P Quinn",
           author_email="paul.quinn@diamond.ac.uk",
           url="http://pyspline.sourceforge.net",
-          #package_dir = {'pyspline':'src_new'},
+          include_package_data=True,
           packages=['pyspline'],
+          #package_dir = {'pyspline':'pyspline'},
+          #data_files = ('data', ['pyspline/data/edges.dat']),
           scripts=['bin/pyspline'],
           install_requires = ['numpy']
           )

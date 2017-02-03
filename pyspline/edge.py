@@ -11,39 +11,39 @@
 # (at your option) any later version.
 
 #Generated with the help of Qt designer
-
+from __future__ import print_function
 from PyQt4.Qt import *
 from PyQt4.Qwt5 import *
 
 #from qt import *
 import sys
+import pkgutil
 
 
 haveFile=True
 
 #check to see if we have it
 try:
-    myfile=open("edges.dat")
+    myfiledata = pkgutil.get_data('pyspline', "data/edges.dat")
+    #print("edges.dat: ", myfiledata)    
 except IOError:
-    print 'edges.dat not found'
+    print('edges.dat not found')
     haveFile=False
     
 if haveFile:
+    lines=myfiledata.splitlines()
     #skip header
-    line=myfile.readline()
+    lines.pop(0)
     
     data={}
     #each line contains one element and it's edges:energies
-    line=myfile.readline()
-    while(line):
+    for line in lines:
         arr=line.split()
         edges={}
         for edge in arr[1:]:
             info=edge.split(":")
             edges[info[0]]=float(info[1])
         data[arr[0]]=edges
-        line=myfile.readline()
-    myfile.close()
     
 else:
     data={

@@ -49,8 +49,9 @@ else:
           url="http://pyspline.sourceforge.net",
           include_package_data=True,
           packages=['pyspline'],
-          #package_dir = {'pyspline':'pyspline'},
-          #data_files = ('data', ['pyspline/data/edges.dat']),
+          package_dir = {'pyspline':'pyspline'},
+          package_data= {'pyspline':['data/*.*']}, #includes edges.dat and formatPreferences.ini
+	  #data_files = ('data', ['pyspline/data/edges.dat']),
           scripts=['bin/pyspline'],
           install_requires = ['numpy', 'appdirs']
           )

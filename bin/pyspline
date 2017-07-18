@@ -9,6 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
+import os #new
 import sys
 
 from PyQt4.Qt import *
@@ -24,7 +25,8 @@ if(__name__=='__main__'):
     if(len(sys.argv)>=2):
     
         #assume 1st argument is filename, check if it exists
-        if(exists(sys.argv[1])):
+        #if(exists(sys.argv[1])): # new
+        if(os.path.exists(sys.argv[1])): # new
             mainwin.fileStringOpen(sys.argv[1])
             
     mainwin.show()
